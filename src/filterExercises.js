@@ -8,7 +8,7 @@ const instructors = useInstructors();
 // It should return an array of just the students who are in that cohort
 
 export const getStudentsInCohort = (cohort) => {
-    return students.filter(student => student.cohort  === cohort);
+    return students.filter(student => student.cohort  === cohort)
 }
 
 
@@ -32,7 +32,7 @@ export const getFullTimeStudents = () => {
 // It should accept one integer parameter name `instructorId`
 // It should return an array of students with that instructor
 export const getStudentsByInstructorId = (instructorId) => {
-    return students.filter(instructor => instructor.instructorId === instructorId);
+    return students.filter(instructor => instructor.instructorId === instructorId)
 }
 // Export a function called getPolyglotStudents
 // It should accept one integer parameter named `languageCount`
@@ -44,14 +44,31 @@ export const getPolyglotStudents = (languageCount) => {
 // Export a function called getAvailableInstructors
 // It should not accept any parameters
 // It should return an array of instructors that don't have any students
+
 export const getAvailableInstructors = () => {
-    return instructors.filter()
+     return instructors.filter(instructor => {
+         return !students.find(student => {
+            return instructor.id === student.instructorId
+        } )
+    })
 }
+
+// export const getAvailableInstructors = () => {
+//     return instructors.filter(instructor => students.find(student => student.instructorId !== instructor.id))
+// }
+
+// export const getAvailableInstructors = () => {
+//     let studentsWithInstructors = students.find(student => student.id !== student)
+// }
+
 // Export a function called getStudentsByLanguage
 // It should accept one string parameter named `language`
 // It should return an array of students who know the given language
 // HINT: In addition to the `filter` method, you might also look up the `some` method
 
+export const getStudentsByLanguage = (language) => {
+    return students.filter(student => student.languages.some(studentLanguages => studentLanguages === language))
+}
 /******** ADVANCED CHALLENGE ********/
 /******** Only do this if all other tests are passing ****/
 /******** To test, uncomment the code at the bottom of tests/filter.spec.js  *****/
