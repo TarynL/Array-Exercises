@@ -8,12 +8,11 @@ const instructors = useInstructors();
 // It should return an array of strings. Each string should be the full name of the student
 
 
-export const getStudentsNames = () => {
-    students.map(student => { 
-    return `
-    <h1> ${student.firstName}${student.lastName}</h1>`
-    }
-}
+export const getStudentNames = () => {
+    return students.map(student =>  
+     `${student.firstName} ${student.lastName}`)
+     }
+
   
   
 
@@ -29,5 +28,11 @@ export const getStudentsNames = () => {
 */
 
 export const StudentList = () => {
+  return students.map(student => {
+    `<div>
+    <h1>${student.firstName}${student.lastName}</h1>
+    <h2>${student.cohort}</h2>
+  </div>`
+  }).join("")
 
 }
